@@ -109,7 +109,7 @@ app.get('/health', (req, res) => {
 });
 
 app.get('/compile', async (req, res) => {
-    req.socket.setTimeout(1000 * 60 * 0.5); // 30s
+    req.socket.setTimeout(1000 * 60 * 5); // 5min
     var forceCompilation = req.query && !!req.query.force;
     var command = req.query && req.query.command ? req.query.command : 'pdflatex';
     command = command.trim().toLowerCase();
