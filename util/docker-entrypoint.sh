@@ -6,6 +6,10 @@ rm -rf /var/www
 # Copy and install the latest & greatest Latex-Online
 git clone https://github.com/aslushnikov/latex-online /var/www
 cd /var/www
+
+# change to a local server
+npm config set registry https://mirrors.cloud.tencent.com/npm/
+
 npm install .
 
 export NODE_ENV=production

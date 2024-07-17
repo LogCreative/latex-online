@@ -1,6 +1,6 @@
 #####################################################################################
 # Compile this dockerfile with
-#        time sudo docker build -t aslushnikov/latex-online:latest -f Dockerfile .
+#        time sudo docker build -t logcreative/latex-online:latest -f Dockerfile.texlive2024 .
 # Run docker image
 #       sudo docker run -d -p 2700:2700 --rm --name latex-online aslushnikov/latex-online:latest
 #####################################################################################
@@ -12,6 +12,10 @@
 FROM texlive/texlive:latest
 
 MAINTAINER Andrey Lushnikov aslushnikov@gmail.com
+
+# Replace debian update to a local mirror if necessary
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources &&  \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debian.sources
 
 RUN apt-get update && \
     apt-get install ca-certificates -y && \
